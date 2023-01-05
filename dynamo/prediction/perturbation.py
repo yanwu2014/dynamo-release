@@ -350,38 +350,38 @@ def perturbation(
     if zero_perturb_genes_vel:
         adata.layers[add_delta_Y_key][:, gene_loc] = 0
 
-    logger.info(
-        "project the pca perturbation vector to low dimensional space....",
-    )
+    # logger.info(
+    #     "project the pca perturbation vector to low dimensional space....",
+    # )
 
-    if add_transition_key is None:
-        transition_key = "perturbation_transition_matrix"
-    else:
-        transition_key = add_transition_key
+    # if add_transition_key is None:
+    #     transition_key = "perturbation_transition_matrix"
+    # else:
+    #     transition_key = add_transition_key
 
-    if add_velocity_key is None:
-        velocity_key, embedding_key = "velocity_" + emb_basis + "_perturbation", "X_" + emb_basis + "_perturbation"
-    else:
-        velocity_key, embedding_key = add_velocity_key, add_embedding_key
+    # if add_velocity_key is None:
+    #     velocity_key, embedding_key = "velocity_" + emb_basis + "_perturbation", "X_" + emb_basis + "_perturbation"
+    # else:
+    #     velocity_key, embedding_key = add_velocity_key, add_embedding_key
 
-    cell_velocities(
-        adata,
-        X=X_pca,
-        V=delta_Y,
-        basis=emb_basis,
-        enforce=True,
-        method=projection_method,
-        add_transition_key=transition_key,
-        add_velocity_key=velocity_key,
-    )
+    # cell_velocities(
+    #     adata,
+    #     X=X_pca,
+    #     V=delta_Y,
+    #     basis=emb_basis,
+    #     enforce=True,
+    #     method=projection_method,
+    #     add_transition_key=transition_key,
+    #     add_velocity_key=velocity_key,
+    # )
 
-    logger.info_insert_adata("X_" + emb_basis + "_perturbation", "obsm", indent_level=1)
+    # logger.info_insert_adata("X_" + emb_basis + "_perturbation", "obsm", indent_level=1)
 
-    logger.info(
-        f"you can use dyn.pl.streamline_plot(adata, basis='{emb_basis}_perturbation') to visualize the "
-        f"perturbation vector"
-    )
-    adata.obsm[embedding_key] = adata.obsm["X_" + emb_basis].copy()
+    # logger.info(
+    #     f"you can use dyn.pl.streamline_plot(adata, basis='{emb_basis}_perturbation') to visualize the "
+    #     f"perturbation vector"
+    # )
+    # adata.obsm[embedding_key] = adata.obsm["X_" + emb_basis].copy()
 
 
 def rank_perturbation_genes(adata, pkey="j_delta_x_perturbation", prefix_store="rank", **kwargs):
